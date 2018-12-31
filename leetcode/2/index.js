@@ -14,7 +14,7 @@ var carry = 0;
 var addTwoNumbers = function(l1, l2) {
     var result = addNodeVal();
     var r = result;
-    while(l1 || l2) {
+    while(l1 || l2 || carry === 1) {
         var l1Next = l1 && l1.next;
         var l2Next = l2 && l2.next;
         r.next = addNodeVal(l1, l2);
@@ -22,7 +22,7 @@ var addTwoNumbers = function(l1, l2) {
         l1 = l1Next;
         l2 = l2Next;
     }
-    
+
     return result.next;
 };
 
@@ -38,3 +38,17 @@ function addNodeVal(node1, node2) {
     carry = 0;
     return new ListNode(count);
 }
+
+/* ------------- 以下为测试代码 ----------------- */
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
+
+console.log(addTwoNumbers({
+    val: 5,
+    next: null
+}, {
+    val: 5,
+    next: null
+}))
